@@ -98,7 +98,7 @@ write_gap('Xception', Xception, (299, 299), xception.preprocess_input)
 * [Inception v3](https://arxiv.org/abs/1512.00567) 15.12
 * [Xception](https://arxiv.org/abs/1610.02357) 16.10
 
-### 载入特征向量构建模型
+### 载入特征向量和构建模型
 
 经过上面的代码以后，我们获得了三个特征向量文件，分别是：
 
@@ -154,6 +154,8 @@ if __name__ == '__main__':
     y_pred = np.argmax(y_pred, axis=1)
     print(y_pred[0])
 ```
+
+网络结构如下：
 
 ![](https://raw.githubusercontent.com/ypwhs/resources/master/model.png)
 
