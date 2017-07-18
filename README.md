@@ -92,11 +92,6 @@ write_gap('Xception', Xception, (299, 299), xception.preprocess_input)
 
 为了复用代码，写一个函数是非常有必要的，那么我们的函数就需要输入模型，输入图片的大小，以及[预处理函数](https://github.com/fchollet/keras/blob/master/keras/applications/inception_v3.py#L389-L393)，因为 Xception 和 Inception V3 都需要将数据限定在 `(-1, 1)` 的范围内，然后我们利用 `GlobalAveragePooling2D` 将卷积层输出的每个激活图直接求平均值，不然输出的文件会非常大，且容易过拟合。然后我们定义了两个 generator，利用 `model.predict_generator` 函数来导出特征向量，最后我们选择了 ResNet50, Xception, Inception V3 这三个模型（如果有兴趣也可以导出 VGG 的特征向量）。每个模型导出的时间都挺长的，用 GTX 1080 Ti 上大概需要用**五分钟到十分钟**。 这三个模型都是在 [ImageNet](http://www.image-net.org/) 上面预训练过的，所以每一个模型都可以说是身经百战，通过这三个老司机导出的特征向量，可以高度概括一张图片有哪些内容，最后导出的 h5 文件包括三个 numpy 数组：
 
-参考资料：
-
-* [ResNet](https://arxiv.org/abs/1512.03385) 15.12
-* [Inception v3](https://arxiv.org/abs/1512.00567) 15.12
-* [Xception](https://arxiv.org/abs/1610.02357) 16.10
 
 ### 载入特征向量和构建模型
 
@@ -194,6 +189,8 @@ Epoch 63/100
 
 参考链接：
 
-[面向小数据集构建图像分类模型](http://keras-cn.readthedocs.io/en/latest/blog/image_classification_using_very_little_data/)
-
-[猫狗大战](https://github.com/ypwhs/dogs_vs_cats)
+* [ResNet](https://arxiv.org/abs/1512.03385) 15.12
+* [Inception v3](https://arxiv.org/abs/1512.00567) 15.12
+* [Xception](https://arxiv.org/abs/1610.02357) 16.10
+* [面向小数据集构建图像分类模型](http://keras-cn.readthedocs.io/en/latest/blog/image_classification_using_very_little_data/)
+* [猫狗大战](https://github.com/ypwhs/dogs_vs_cats)
